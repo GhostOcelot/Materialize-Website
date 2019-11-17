@@ -1,0 +1,29 @@
+body {
+  background-color: #eee;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+form {
+  margin: 0 10px
+}
+
+a {
+  color: white
+}
+
+.parallax img {
+  max-width: 100%;
+  height: auto
+}
+
+@media(max-width: 800px) {
+  .parallax img {
+    max-width: none;
+    max-height: 100%;
+  }
+}
+
+li.active .collapsible-body,
+li .collapsible-body {
+  padding: 10px 30px 0 30px
+}

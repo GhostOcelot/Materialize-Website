@@ -6,42 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://kit.fontawesome.com/becf56bfd5.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #eee;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    form {
-      margin: 0 10px
-    }
-
-    a {
-      color: white
-    }
-
-    .parallax img {
-      max-width: 100%;
-      height: auto
-    }
-
-    @media(max-width: 800px) {
-      .parallax img {
-        max-width: none;
-        max-height: 100%;
-      }
-    }
-
-    li.active .collapsible-body,
-    li .collapsible-body {
-      padding: 10px 30px 0 30px
-    }
-  </style>
   <title>Document</title>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -55,21 +24,27 @@
         <a href="#" class="sidenav-trigger" data-target="menu">
           <i class="material-icons small" style="font-size:36px">menu</i>
         </a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down nav-list" style="display: none">
           <li> <a href="#articles">Articles</a></li>
           <li> <a href="#pictures">Pictures</a></li>
           <li> <a href="#contact">Contact</a></li>
           <li> <a href="#" class="btn-floating grey lighten-3"><i class="fab fa-facebook-square teal-text"></i></a></li>
-          <li> <a href="#" class="btn-floating grey lighten-3"><i class="fab fa-instagram teal-text"></i></a></li>
           <li> <a href="#" class="btn-floating grey lighten-3"><i class="fab fa-linkedin teal-text"></i> </a></li>
+          <li> <a href="#" class="btn-floating grey lighten-3"><i class="fab fa-instagram teal-text"></i></a></li>
+          <li> <a href="#login-modal" class="login modal-trigger">Login</a></li>
+          <li> <a class="user-name-bigscreen"></a></li>
+          <li> <a class="logout">Logout</a></li>
+          <li> <a href="#signup-modal" class="signup modal-trigger">Sign up</a></li>
         </ul>
         <ul class="sidenav white" id="menu">
-          <li>
-            <div class="user-view">
-              <h5 class="name teal-text" style="font-size: 30px">Autor Nieznany</h5>
-              <h5 class="email black-text">autor.nieznany@gmail.com</h5>
-            </div>
-          </li>
+          <div>
+            <li>
+              <a class="teal-text user-name-smallscreen" style="font-size: 1.5em; margin-top: 10px"></a>
+            </li>
+            <li><a href="#signup-modal" class="sidenav-close signup modal-trigger">Sign up</a></li>
+            <li><a href="#login-modal" class="sidenav-close login modal-trigger">Login</a></li>
+            <li><a class="sidenav-close logout">Logout</a></li>
+          </div>
           <div class="divider"></div>
           <li> <a href="#articles" class="sidenav-close">Articles</a></li>
           <li> <a href="#pictures" class="sidenav-close">Pictures</a></li>
@@ -87,6 +62,52 @@
     </nav>
   </header>
 
+  <!--login modal-->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <h4 class="center-align">Login</h4>
+      <form id="login-form">
+        <div class="input-field grey-text text-darken-2">
+          <i class="material-icons prefix">email</i>
+          <input id="login-email" type="email">
+          <label for="login-email">Email</label>
+        </div>
+        <div class="input-field grey-text text-darken-2">
+          <i class="material-icons prefix">lock</i>
+          <input id="login-password" type="password">
+          <label for="login-password">Password</label>
+        </div>
+        <div>
+          <input type="submit" href="#" class="btn" style="margin: 10px 0" value="login"></input>
+        </div>
+        <div id="login-error" style="color: red; text-align: center; margin-top: 10px"></div>
+      </form>
+    </div>
+  </div>
+
+  <!--Signup modal-->
+  <div id="signup-modal" class="modal">
+    <div class="modal-content">
+      <h4 class="center-align">Create your account</h4>
+      <form id="signup-form">
+        <div class="input-field grey-text text-darken-2">
+          <i class="material-icons prefix">email</i>
+          <input id="signup-email" type="email">
+          <label for="signup-email">Email</label>
+        </div>
+        <div class="input-field grey-text text-darken-2">
+          <i class="material-icons prefix">lock</i>
+          <input id="signup-password" type="password">
+          <label for="signup-password">Password</label>
+        </div>
+        <div>
+          <input type="submit" id="signup-submit" class="btn" style="margin: 10px 0" value="sign up"></input>
+        </div>
+        <div id="signup-error" style="color: red; text-align: center; margin-top: 10px"></div>
+      </form>
+    </div>
+  </div>
+
   <div class="parallax-container" style="height:500px; margin-bottom: 50px">
     <h1 class="white-text center-align" style="font-weight: 20; margin-top: 200px">Discover...</h1>
     <div class="parallax">
@@ -96,106 +117,9 @@
 
   <section style="margin: 0 10% 50px 10%" id="articles" class="scrollspy">
     <h3 class="teal-text center-align">Articles</h3>
-    <ul class="collapsible expandable">
-      <li>
-        <div class="collapsible-header">first</div>
-        <div class="collapsible-body" id="article1">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pellentesque
-            eleifend elementum. Ut vitae tortor id dolor gravida fringilla. Sed eget suscipit neque, a lacinia libero.
-            Proin auctor tortor et vestibulum commodo. Aliquam finibus risus sed fringilla condimentum. Suspendisse
-            vehicula, est sed dapibus tempor, ipsum eros congue nibh, sed scelerisque orci lorem et tortor. Quisque
-            dignissim erat id ligula rutrum, eu porttitor diam maximus. Quisque id sem a mi imperdiet posuere. Cras
-            mauris
-            lorem, accumsan eu nulla at, auctor eleifend diam. Sed consectetur laoreet egestas. Nulla tristique quam a
-            ante vestibulum, eget luctus sem ornare. Proin mollis nulla eget erat sodales faucibus. Phasellus orci
-            mauris,
-            varius nec risus quis, maximus semper odio. Quisque blandit volutpat eros eget mollis. Morbi dictum, nunc
-            non
-            iaculis mollis, libero diam scelerisque odio, in pharetra mi justo in libero. Suspendisse potenti.</p>
-
-          <p>Donec consectetur tincidunt nibh eget faucibus. Interdum et malesuada fames ac ante ipsum primis in
-            faucibus.
-            Nulla ut pretium libero. Nullam in urna magna. Duis gravida orci massa. Duis non malesuada ipsum. Donec
-            venenatis dui ac facilisis viverra.</p>
-
-          <p>Aliquam ut semper dui, id sodales metus. Ut condimentum, diam at pellentesque vestibulum, est lacus
-            tristique
-            urna, ut ornare leo nulla quis nunc. Duis ut leo tristique, placerat est sit amet, ullamcorper tellus.
-            Vivamus
-            sodales aliquet tortor, a rutrum velit ultrices nec. Mauris fermentum sodales aliquet. Integer condimentum
-            nisi euismod est condimentum aliquet. Integer in massa odio. Sed tincidunt commodo urna ut facilisis.
-          </p>
-          <div class="divider"></div>
-          <p> <a href="#header" class="teal-text" id="link1">GO TO TOP</a></p>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header">Second</div>
-        <div class="collapsible-body" id="article2">
-          <p>Suspendisse commodo lacus lacus, at cursus dolor aliquet a. Cras accumsan
-            commodo imperdiet. Fusce vitae sollicitudin tortor, sit amet tincidunt arcu. Ut massa quam, molestie vel
-            nunc
-            quis, viverra suscipit turpis. Quisque a dui sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Vestibulum dignissim venenatis leo consequat bibendum. Proin ante enim, pulvinar et ex vitae, auctor
-            eleifend
-            ex. Proin quis magna dui. Ut at scelerisque lacus. Fusce ac velit quis augue laoreet ultrices placerat sed
-            leo. Maecenas nec dignissim sapien. Aliquam quis ante a metus lobortis dapibus vitae sed nibh. Sed eget sem
-            semper, bibendum mauris ut, aliquam elit.</p>
-
-          <p>Phasellus ullamcorper risus laoreet erat tempor, eu blandit tellus dictum. Mauris sollicitudin augue est,
-            et
-            rhoncus dui sagittis eu. Nunc nisi libero, eleifend et mauris ut, vehicula iaculis diam. Ut mollis nulla at
-            rhoncus blandit. Donec fermentum placerat aliquam. Praesent nec sapien urna. Ut sit amet enim luctus,
-            ultricies erat vitae, sagittis risus. Integer arcu metus, sagittis et consequat quis, posuere sit amet
-            magna.
-            Nullam porta consequat erat, et consectetur ex mattis nec.</p>
-
-          <p>Praesent id condimentum arcu. Aliquam facilisis a urna vitae hendrerit. Etiam condimentum mauris quis nulla
-            dignissim, in pretium risus dapibus. Phasellus efficitur finibus purus. Duis tristique quis magna at ornare.
-            Donec nec urna vulputate, vestibulum erat eget, semper magna. Praesent at justo viverra, pulvinar ex sit
-            amet,
-            aliquet turpis.
-          </p>
-          <div class="divider"></div>
-          <p> <a href="#header" class="teal-text" id="link2">GO TO TOP</a></p>
-        </div>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header">Third</div>
-        <div class="collapsible-body" id="article3">
-          <p>Integer sollicitudin tincidunt dui, sed faucibus odio aliquam eget. Nullam sodales hendrerit tortor nec
-            tristique. Nam facilisis lectus nec lacinia semper. In pellentesque, erat ut rutrum iaculis, sem dolor
-            volutpat felis, a placerat magna risus eu lacus. Aenean eu mauris porttitor, elementum est in, molestie
-            risus. Aenean porta, justo sit amet efficitur hendrerit, est dui congue ipsum, placerat cursus mauris arcu
-            nec urna. Duis eget elit convallis, feugiat mi in, rhoncus erat. Vivamus pulvinar orci enim, eu euismod elit
-            elementum semper. Aenean ut mattis enim, ac varius ligula.</p>
-
-          <p>Sed at bibendum tellus. Pellentesque sagittis ac metus eget aliquam. Fusce faucibus purus sed libero
-            sollicitudin aliquet. Pellentesque non dolor eget nunc condimentum malesuada non ut augue. Nunc ac tristique
-            purus, sed bibendum nibh. Suspendisse sollicitudin arcu et nisl auctor posuere. Nam lacus enim, rutrum ut
-            vestibulum a, pulvinar nec tortor. Aenean non nunc ut purus maximus porttitor ut vitae dui. Ut facilisis
-            lacus cursus odio bibendum condimentum. Suspendisse at enim nec enim tincidunt tincidunt. Maecenas semper
-            auctor mi, at varius justo fringilla ut. Curabitur vulputate volutpat dapibus. Nunc tristique ipsum purus,
-            in porttitor mauris interdum quis. Donec tincidunt nisl tortor, eu placerat ligula volutpat eget.
-            Suspendisse dapibus mauris velit, ac maximus dolor suscipit vel. Nulla at massa orci.</p>
-
-          <p>Integer vitae erat commodo risus suscipit efficitur. Vestibulum imperdiet lectus ac mi luctus lobortis.
-            Praesent eu justo leo. Nullam eu nisl ac lectus suscipit aliquet. Suspendisse potenti. Morbi porta massa eu
-            sapien volutpat pellentesque. Donec massa neque, gravida sit amet lacus vestibulum, pharetra viverra dui.
-            Aliquam accumsan, arcu eu feugiat iaculis, ex mauris sodales lacus, vitae consectetur metus massa non
-            tortor. Nulla facilisis pharetra lorem, a tincidunt risus faucibus quis. Donec finibus nisi lacinia arcu
-            porta, nec dignissim ligula fermentum. Sed mollis felis urna, in rutrum libero semper a. Donec lacus velit,
-            vulputate id vehicula id, placerat et ex. Proin dictum, ipsum ut interdum aliquet, libero enim pharetra
-            velit, quis convallis orci massa a dolor. Nulla facilisi.
-          </p>
-          <div class="divider"></div>
-          <p> <a href="#header" class="teal-text" id="link3">GO TO TOP</a></p>
-        </div>
-
-        </div>
-      </li>
-    </ul>
+    <ul class="collapsible expandable" id="articles-list" style="display: none"></ul>
+    <h5 class="grey-text center-align" id="login-to-read" style="display: none">Login to
+      access our outstanding articles</h5>
   </section>
 
   <div class="parallax-container" style="height:400px">
@@ -254,8 +178,8 @@
 
   <section style="margin: 40px 0" id="contact" class="scrollspy">
     <div class="row">
-      <form>
-        <div class="col s11 m6">
+      <form id="message-form">
+        <div class="col s11 m5 offset-s1">
           <h5 class="center-align" style="margin-left: 20px">Contact</h5>
           <div class="input-field grey-text text-darken-2">
             <i class="material-icons prefix">email</i>
@@ -265,7 +189,7 @@
           <div class="input-field grey-text text-darken-2">
             <i class="material-icons prefix">mode_edit</i>
             <textarea id="first-name" class="materialize-textarea"></textarea>
-            <label for="first_name">Message</label>
+            <label for="first-name">Message</label>
           </div>
           <div class="input-field">
             <p>
@@ -280,7 +204,7 @@
           </div>
         </div>
       </form>
-      <div class="col s11 m6 l4 offset-l1" style="margin-top: 20px">
+      <div class="col s10 m5 offset-s1 offset-m1" style="margin-top: 20px">
         <div class="card">
           <div class="card-image">
             <img src="photo-1569173784625-34f37a1a35ef.jpg" class="responsive-img" alt="">
@@ -305,8 +229,7 @@
       <div class="row">
         <div class="col s12 m8">
           <h5>About me</h5>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam expedita alias
-            similique, fuga adipisci
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam expedita alias similique, fuga adipisci
             cupiditate sequi incidunt dolore, eos quaerat quasi architecto consequuntur voluptatum nesciunt magnam! Unde
             dignissimos iusto, quos ad iste consequuntur totam et quasi facilis laborum fugit explicabo. Neque aliquid,
             cumque veritatis deleniti amet id iusto maiores fugiat.</p>
@@ -323,15 +246,34 @@
       </div>
     </div>
     <div class="footer-copyright">
-      <div class=" container center-align">&copy; 2019 form template</div>
+      <div class=" container center-align">&copy; 2019 Web TNT</div>
     </div>
   </footer>
 
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-firestore.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script> -->
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyCAeXCa7Wt5bJgd7BpEejoff-sej93_4gM",
+      authDomain: "materialize-771f9.firebaseapp.com",
+      databaseURL: "https://materialize-771f9.firebaseio.com",
+      projectId: "materialize-771f9",
+      // storageBucket: "materialize-771f9.appspot.com",
+      // messagingSenderId: "187486323785",
+      // appId: "1:187486323785:web:c742198982232d1cec2b98",
+      // measurementId: "G-MRZ944QRCJ"
+    };
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
+    const auth = firebase.auth();
+    const db = firebase.firestore()
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="main.js">
-
-  </script>
+  <script src="main.js"></script>
 
 </body>
 
